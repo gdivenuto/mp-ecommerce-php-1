@@ -115,6 +115,50 @@
                                     </div>
 
                                 </div>
+<?php
+// Se incluye el  SDK de Mercado Pago
+require __DIR__ .  '/vendor/autoload.php';
+
+// Agrega credenciales  (PROD_ACCESS_TOKEN)
+MercadoPago\SDK::setAccessToken('APP_USR-6317427424180639-042414-47e969706991d3a442922b0702a0da44-469485398');
+
+// Se crea un objeto de preferencia
+$preference = new MercadoPago\Preference();
+
+// Se crea el 
+$payer = new Payer();
+$payer->name = "Lalo";
+$payer->surname = "Landa";
+$payer->email = "test_user_63274575@testuser.com";
+
+# Se crea el ítem en la preferencia
+$item = new MercadoPago\Item();
+$item->id = 1234;
+$item->title = $_POST['title'];
+$item->picture_url = "./assets/003.jpg";
+$item->description = "Dispositivo móvil de Tienda e-commerce";
+$item->quantity = 1;
+$item->unit_price = $_POST['price'];
+                                                         
+// Se agrega el ítem a la preferencia
+$preference->items = array($item);
+
+$preference->external_reference = "gabrieldivenuto@gmail.com";
+
+// Para redireccionar al comprador de nuevo a la Tienda
+// success: URL de retorno ante pago aprobado.
+// failure: URL de retorno ante pago cancelado.
+// pending: URL de retorno ante pago pendiente.
+$preference->back_urls = array(
+    "success" => "https://gdivenuto-mp-commerce-php.herokuapp.com/success.php",
+    "failure" => "https://gdivenuto-mp-commerce-php.herokuapp.com/failure.php",
+    "pending" => "https://gdivenuto-mp-commerce-php.herokuapp.com/pending.php"
+);
+// Redirige automáticamente a la Tienda cuando el pago finaliza como aprobado (los valores posibles son approved y all)
+$preference->auto_return = "approved";
+
+$preference->save();
+?>
                                 <div class="as-producttile-info" style="float:left;min-height: 168px;">
                                     <div class="as-producttile-titlepricewraper" style="min-height: 128px;">
                                         <div class="as-producttile-title">
@@ -126,13 +170,13 @@
                                             </h3>
                                         </div>
                                         <h3 >
-                                            <?php echo $_POST['price'] ?>
+                                            <?php echo "$" . $_POST['price'] ?>
                                         </h3>
                                         <h3 >
-                                            <?php echo "$" . $_POST['unit'] ?>
+                                            <?php echo $_POST['unit'] ?>
                                         </h3>
                                     </div>
-                                    <form action="http://localhost/tiendagd/procesar_pago.php" method="POST">
+                                    <form action="./procesar_pago.php" method="POST">
                                         <script
                                             src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js"
                                             data-preference-id="<?php echo $preference->id; ?>"
@@ -140,7 +184,16 @@
                                             data-elements-color="#8e44ad">
                                         </script>
                                     </form>
-                                    <!--<button type="submit" class="mercadopago-button" formmethod="post">Pagar</button>-->
+                                    <!--REEMPLAZADO <button type="submit" class="mercadopago-button" formmethod="post">Pagar</button>-->
+                                    <?php
+                                    echo '<pre>';
+                                    // REVISANDO LA INFO RECIBIDA
+                                    print_r($_POST);
+                                    echo '<hr>';
+                                    // REVISANDO LA PREFERENCIA GENERADA
+                                    print_r($preference);
+                                    echo '</pre>';
+                                    ?>
                                 </div>
                             </div>
                         </div>
