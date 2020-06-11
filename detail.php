@@ -143,6 +143,7 @@ $payer->address = array(
     "street_number" => 123,
     "zip_code" => "1111"
 );
+$preference->payer = $payer;
 
 # Se crea el ítem en la preferencia
 $item = new MercadoPago\Item();
@@ -159,17 +160,19 @@ $preference->external_reference = "gabrieldivenuto@gmail.com";
 
 // URL a la cual es posible recibir notificaciones de pagos
 $preference->notification_url = "https://gdivenuto-mp-commerce-php.herokuapp.com/notificaciones.php";
-/**
+
 // Para redireccionar al comprador de nuevo a la Tienda
 // success: URL de retorno ante pago aprobado.
 // failure: URL de retorno ante pago cancelado.
 // pending: URL de retorno ante pago pendiente.
+// Parametros: 
+// ?collection_id=&collection_status=approved&external_reference=gabrieldivenuto@gmail.com&payment_type=credit_card&preference_id=&site_id=&processing_mode=aggregator&merchant_account_id=null
 $preference->back_urls = array(
-    "success" => "https://gdivenuto-mp-commerce-php.herokuapp.com/success.php?collection_id=[PAYMENT_ID]&collection_status=approved&external_reference=gabrieldivenuto@gmail.com&payment_type=credit_card&preference_id=[PREFERENCE_ID]&site_id=[SITE_ID]&processing_mode=aggregator&merchant_account_id=null",
+    "success" => "https://gdivenuto-mp-commerce-php.herokuapp.com/success.php",
     "failure" => "https://gdivenuto-mp-commerce-php.herokuapp.com/failure.php",
     "pending" => "https://gdivenuto-mp-commerce-php.herokuapp.com/pending.php"
 );
-/**/
+
 // Redirige automáticamente a la Tienda, según el resultado de la opercación se muestra la página definida arriba
 $preference->auto_return = "all";
                        
@@ -207,13 +210,13 @@ $preference->save();
                                     <form action="./procesar_pago.php" method="POST">
                                         <script
                                             src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js"
-                                            data-preference-id="<?php echo '';//$preference->id; ?>"
+                                            data-preference-id="<?php echo $preference->id; ?>"
                                             data-button-label="Pagar la compra"
                                             data-elements-color="#8e44ad">
                                         </script>
                                     </form>
-                                    <!--REEMPLAZADO <button type="submit" class="mercadopago-button" formmethod="post">Pagar</button>-->
                                     <?php
+                                    /**
                                     echo '<pre>';
                                     // REVISANDO LA INFO RECIBIDA
                                     //print_r($_POST);
@@ -221,6 +224,7 @@ $preference->save();
                                     // REVISANDO LA PREFERENCIA GENERADA
                                     print_r($preference);
                                     echo '</pre>';
+                                    /**/
                                     ?>
                                 </div>
                             </div>
