@@ -125,11 +125,20 @@ MercadoPago\SDK::setAccessToken('APP_USR-6317427424180639-042414-47e969706991d3a
 // Se crea un objeto de preferencia
 $preference = new MercadoPago\Preference();
 
-// Se crea el 
-$payer = new Payer();
+// Se crea el Pagador/Comprador
+$payer = new MercadoPago\Payer();
 $payer->name = "Lalo";
 $payer->surname = "Landa";
 $payer->email = "test_user_63274575@testuser.com";
+$payer->phone = array(
+    "area_code" => "11",
+    "number" => "22223333"
+);
+$payer->address = array(
+    "street_name" => "False",
+    "street_number" => 123,
+    "zip_code" => "1111"
+);
 
 # Se crea el ítem en la preferencia
 $item = new MercadoPago\Item();
@@ -150,12 +159,23 @@ $preference->external_reference = "gabrieldivenuto@gmail.com";
 // failure: URL de retorno ante pago cancelado.
 // pending: URL de retorno ante pago pendiente.
 $preference->back_urls = array(
-    "success" => "https://gdivenuto-mp-commerce-php.herokuapp.com/success.php",
-    "failure" => "https://gdivenuto-mp-commerce-php.herokuapp.com/failure.php",
-    "pending" => "https://gdivenuto-mp-commerce-php.herokuapp.com/pending.php"
+    "success" => "https://gdivenuto-mp-commerce-php.herokuapp.com/success.php?collection_id=[PAYMENT_ID]&collection_status=approved&external_reference=gabrieldivenuto@gmail.com&payment_type=credit_card&preference_id=[PREFERENCE_ID]&site_id=[SITE_ID]&processing_mode=aggregator&merchant_account_id=null",
+    "failure" => "https://gdivenuto-mp-commerce-php.herokuapp.com/failure.php?collection_id=[PAYMENT_ID]&collection_status=approved&external_reference=gabrieldivenuto@gmail.com&payment_type=credit_card&preference_id=[PREFERENCE_ID]&site_id=[SITE_ID]&processing_mode=aggregator&merchant_account_id=null",
+    "pending" => "https://gdivenuto-mp-commerce-php.herokuapp.com/pending.php?collection_id=[PAYMENT_ID]&collection_status=approved&external_reference=gabrieldivenuto@gmail.com&payment_type=credit_card&preference_id=[PREFERENCE_ID]&site_id=[SITE_ID]&processing_mode=aggregator&merchant_account_id=null"
 );
-// Redirige automáticamente a la Tienda cuando el pago finaliza como aprobado (los valores posibles son approved y all)
-$preference->auto_return = "approved";
+// Redirige automáticamente a la Tienda, según el resultado de la opercación se muestra la página definida arriba
+$preference->auto_return = "all";
+                       
+// Métodos de Pago
+$preference->payment_methods = array(
+  "excluded_payment_methods" => array(
+    array("id" => "amex")
+  ),
+  "excluded_payment_types" => array(
+    array("id" => "atm")
+  ),
+  "installments" => 6
+);
 
 $preference->save();
 ?>
