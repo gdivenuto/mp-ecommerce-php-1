@@ -102,7 +102,7 @@
                                             <div class="clearfix image-list xs-no-js as-util-relatedlink relatedlink" data-relatedlink="6|Powerbeats3 Wireless Earphones - Neighborhood Collection - Brick Red|MPXP2">
                                                 <div class="as-tilegallery-element as-image-selected">
                                                     <div class=""></div>
-                                                    <img src="./assets/003.jpg" class="ir ir item-image as-producttile-image" alt="" width="445" height="445" style="content:-webkit-image-set(url(<?php echo $_POST['img'] ?>) 2x);">
+                                                    <img src="<?php echo $_POST['img'] ?>" class="ir ir item-image as-producttile-image" alt="" width="445" height="445" style="content:-webkit-image-set(url(<?php echo $_POST['img'] ?>) 2x);">
                                                 </div>
                                                 
                                             </div>
@@ -116,7 +116,7 @@
 
                                 </div>
 <?php
-    /**
+    /**/
 // Se incluye el  SDK de Mercado Pago
 require __DIR__ .  '/vendor/autoload.php';
 
@@ -148,7 +148,7 @@ $payer->address = array(
 $item = new MercadoPago\Item();
 $item->id = 1234;
 $item->title = $_POST['title'];
-$item->picture_url = "./assets/003.jpg";
+$item->picture_url = $_POST['img'];
 $item->description = "Dispositivo móvil de Tienda e-commerce";
 $item->quantity = 1;
 $item->unit_price = $_POST['price'];
@@ -159,7 +159,7 @@ $preference->external_reference = "gabrieldivenuto@gmail.com";
 
 // URL a la cual es posible recibir notificaciones de pagos
 $preference->notification_url = "https://gdivenuto-mp-commerce-php.herokuapp.com/notificaciones.php";
-
+/**
 // Para redireccionar al comprador de nuevo a la Tienda
 // success: URL de retorno ante pago aprobado.
 // failure: URL de retorno ante pago cancelado.
@@ -169,6 +169,7 @@ $preference->back_urls = array(
     "failure" => "https://gdivenuto-mp-commerce-php.herokuapp.com/failure.php",
     "pending" => "https://gdivenuto-mp-commerce-php.herokuapp.com/pending.php"
 );
+/**/
 // Redirige automáticamente a la Tienda, según el resultado de la opercación se muestra la página definida arriba
 $preference->auto_return = "all";
                        
@@ -184,7 +185,7 @@ $preference->payment_methods = array(
 );
 
 $preference->save();
-/**/
+
 ?>
                                 <div class="as-producttile-info" style="float:left;min-height: 168px;">
                                     <div class="as-producttile-titlepricewraper" style="min-height: 128px;">
@@ -215,10 +216,10 @@ $preference->save();
                                     <?php
                                     echo '<pre>';
                                     // REVISANDO LA INFO RECIBIDA
-                                    print_r($_POST);
+                                    //print_r($_POST);
                                     echo '<hr>';
                                     // REVISANDO LA PREFERENCIA GENERADA
-                                    //print_r($preference);
+                                    print_r($preference);
                                     echo '</pre>';
                                     ?>
                                 </div>
