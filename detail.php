@@ -119,8 +119,11 @@
 // Se incluye el  SDK de Mercado Pago
 require __DIR__ .  '/vendor/autoload.php';
 
-// Agrega credenciales  (PROD_ACCESS_TOKEN)
+// Se agregan las credenciales  (PROD_ACCESS_TOKEN)
 MercadoPago\SDK::setAccessToken('APP_USR-6317427424180639-042414-47e969706991d3a442922b0702a0da44-469485398');
+
+// Se agrega el código único para identificar a los desarrolladores o agencias                                                     
+MercadoPago\SDK::setIntegratorId("dev_24c65fb163bf11ea96500242ac130004");
 
 // Se crea un objeto de preferencia
 $preference = new MercadoPago\Preference();
@@ -148,11 +151,13 @@ $item->picture_url = "./assets/003.jpg";
 $item->description = "Dispositivo móvil de Tienda e-commerce";
 $item->quantity = 1;
 $item->unit_price = $_POST['price'];
-                                                         
 // Se agrega el ítem a la preferencia
 $preference->items = array($item);
 
 $preference->external_reference = "gabrieldivenuto@gmail.com";
+
+// URL a la cual es posible recibir notificaciones de pagos
+$preference->notification_url = "https://gdivenuto-mp-commerce-php.herokuapp.com/notificaciones.php";
 
 // Para redireccionar al comprador de nuevo a la Tienda
 // success: URL de retorno ante pago aprobado.
