@@ -116,6 +116,7 @@
 
                                 </div>
 <?php
+    /**
 // Se incluye el  SDK de Mercado Pago
 require __DIR__ .  '/vendor/autoload.php';
 
@@ -183,6 +184,7 @@ $preference->payment_methods = array(
 );
 
 $preference->save();
+/**/
 ?>
                                 <div class="as-producttile-info" style="float:left;min-height: 168px;">
                                     <div class="as-producttile-titlepricewraper" style="min-height: 128px;">
@@ -204,7 +206,7 @@ $preference->save();
                                     <form action="./procesar_pago.php" method="POST">
                                         <script
                                             src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js"
-                                            data-preference-id="<?php echo $preference->id; ?>"
+                                            data-preference-id="<?php echo '';//$preference->id; ?>"
                                             data-button-label="Pagar la compra"
                                             data-elements-color="#8e44ad">
                                         </script>
@@ -216,7 +218,7 @@ $preference->save();
                                     print_r($_POST);
                                     echo '<hr>';
                                     // REVISANDO LA PREFERENCIA GENERADA
-                                    print_r($preference);
+                                    //print_r($preference);
                                     echo '</pre>';
                                     ?>
                                 </div>
