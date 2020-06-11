@@ -165,8 +165,8 @@ $preference->notification_url = "https://gdivenuto-mp-commerce-php.herokuapp.com
 // pending: URL de retorno ante pago pendiente.
 $preference->back_urls = array(
     "success" => "https://gdivenuto-mp-commerce-php.herokuapp.com/success.php?collection_id=[PAYMENT_ID]&collection_status=approved&external_reference=gabrieldivenuto@gmail.com&payment_type=credit_card&preference_id=[PREFERENCE_ID]&site_id=[SITE_ID]&processing_mode=aggregator&merchant_account_id=null",
-    "failure" => "https://gdivenuto-mp-commerce-php.herokuapp.com/failure.php?collection_id=[PAYMENT_ID]&collection_status=approved&external_reference=gabrieldivenuto@gmail.com&payment_type=credit_card&preference_id=[PREFERENCE_ID]&site_id=[SITE_ID]&processing_mode=aggregator&merchant_account_id=null",
-    "pending" => "https://gdivenuto-mp-commerce-php.herokuapp.com/pending.php?collection_id=[PAYMENT_ID]&collection_status=approved&external_reference=gabrieldivenuto@gmail.com&payment_type=credit_card&preference_id=[PREFERENCE_ID]&site_id=[SITE_ID]&processing_mode=aggregator&merchant_account_id=null"
+    "failure" => "https://gdivenuto-mp-commerce-php.herokuapp.com/failure.php",
+    "pending" => "https://gdivenuto-mp-commerce-php.herokuapp.com/pending.php"
 );
 // Redirige automáticamente a la Tienda, según el resultado de la opercación se muestra la página definida arriba
 $preference->auto_return = "all";
