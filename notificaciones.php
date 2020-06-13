@@ -1,5 +1,5 @@
 <?php
-/* PARA VER QUÉ INFORMACIÓN RECIBO DE MP */
+/* PARA VER QUÉ INFORMACIÓN RECIBO DE Mercado Pago */
     echo '<pre>';
     print_r($_GET);
     echo '</pre>';
