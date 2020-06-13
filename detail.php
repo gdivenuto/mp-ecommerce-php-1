@@ -129,7 +129,7 @@ MercadoPago\SDK::setIntegratorId("dev_24c65fb163bf11ea96500242ac130004");
 // Se crea un objeto de preferencia
 $preference = new MercadoPago\Preference();
 
-// Se crea el Pagador/Comprador
+// Se crea el Pagador / Comprador
 $payer = new MercadoPago\Payer();
 $payer->name = "Lalo";
 $payer->surname = "Landa";
