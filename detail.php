@@ -165,7 +165,7 @@ $preference->notification_url = "https://gdivenuto-mp-commerce-php.herokuapp.com
 // success: URL de retorno ante pago aprobado.
 // failure: URL de retorno ante pago cancelado.
 // pending: URL de retorno ante pago pendiente.
-// Parametros: 
+// Parámetros que recibiría: 
 // ?collection_id=&collection_status=approved&external_reference=gabrieldivenuto@gmail.com&payment_type=credit_card&preference_id=&site_id=&processing_mode=aggregator&merchant_account_id=null
 $preference->back_urls = array(
     "success" => "https://gdivenuto-mp-commerce-php.herokuapp.com/success.php",
