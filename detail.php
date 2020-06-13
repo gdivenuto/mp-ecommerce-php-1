@@ -174,7 +174,7 @@ $preference->back_urls = array(
 );
 
 // Redirige automáticamente a la Tienda, según el resultado de la opercación se muestra la página definida arriba
-$preference->auto_return = "all";
+$preference->auto_return = "approved";
                        
 // Métodos de Pago
 $preference->payment_methods = array(
