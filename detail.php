@@ -116,7 +116,6 @@
 
                                 </div>
 <?php
-    /**/
 // Se incluye el  SDK de Mercado Pago
 require __DIR__ .  '/vendor/autoload.php';
 
@@ -165,8 +164,6 @@ $preference->notification_url = "https://gdivenuto-mp-commerce-php.herokuapp.com
 // success: URL de retorno ante pago aprobado.
 // failure: URL de retorno ante pago cancelado.
 // pending: URL de retorno ante pago pendiente.
-// Parámetros que recibiría: 
-// ?collection_id=&collection_status=approved&external_reference=gabrieldivenuto@gmail.com&payment_type=credit_card&preference_id=&site_id=&processing_mode=aggregator&merchant_account_id=null
 $preference->back_urls = array(
     "success" => "https://gdivenuto-mp-commerce-php.herokuapp.com/success.php",
     "failure" => "https://gdivenuto-mp-commerce-php.herokuapp.com/failure.php",
@@ -188,7 +185,6 @@ $preference->payment_methods = array(
 );
 
 $preference->save();
-
 ?>
                                 <div class="as-producttile-info" style="float:left;min-height: 168px;">
                                     <div class="as-producttile-titlepricewraper" style="min-height: 128px;">
@@ -216,15 +212,11 @@ $preference->save();
                                         </script>
                                     </form>
                                     <?php
-                                    /**/
-                                    echo '<pre>';
-                                    // REVISANDO LA INFO RECIBIDA
-                                    print_r($_POST);
-                                    echo '<hr>';
                                     // REVISANDO LA PREFERENCIA GENERADA
+                                    echo '<hr>';
+                                    echo '<pre>';
                                     print_r($preference);
                                     echo '</pre>';
-                                    /**/
                                     ?>
                                 </div>
                             </div>
