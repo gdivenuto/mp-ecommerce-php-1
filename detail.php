@@ -159,7 +159,7 @@ $preference->items = array($item);
 $preference->external_reference = "gabrieldivenuto@gmail.com";
 
 // URL a la cual es posible recibir notificaciones de pagos
-$preference->notification_url = "https://gdivenuto-mp-commerce-php.herokuapp.com/notificaciones.php";
+$preference->notification_url = "https://gdivenuto-mp-commerce-php.herokuapp.com/notificaciones";
 
 // Para redireccionar al comprador de nuevo a la Tienda
 // success: URL de retorno ante pago aprobado.
@@ -216,7 +216,7 @@ $preference->save();
                                         </script>
                                     </form>
                                     <?php
-                                    /**
+                                    /**/
                                     echo '<pre>';
                                     // REVISANDO LA INFO RECIBIDA
                                     //print_r($_POST);
