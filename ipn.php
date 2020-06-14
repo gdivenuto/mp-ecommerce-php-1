@@ -1,5 +1,9 @@
  <?php
-
+/* PARA VER QUÉ INFORMACIÓN RECIBO DE Mercado Pago */
+    echo '<pre>';
+    print_r($_POST);
+    echo '</pre>';
+/**/
     MercadoPago\SDK::setAccessToken("ENV_ACCESS_TOKEN");
 
     switch($_POST["type"]) {
