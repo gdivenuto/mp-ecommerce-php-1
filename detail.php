@@ -159,7 +159,7 @@ $preference->items = array($item);
 $preference->external_reference = "gabrieldivenuto@gmail.com";
 
 // URL a la cual es posible recibir notificaciones de pagos
-$preference->notification_url = "https://gdivenuto-mp-commerce-php.herokuapp.com/ipn";
+$preference->notification_url = "https://gdivenuto-mp-commerce-php.herokuapp.com/ipn.php";
 
 // Para redireccionar al comprador de nuevo a la Tienda
 // success: URL de retorno ante pago aprobado.
@@ -207,7 +207,7 @@ $preference->save();
                                             <?php echo $_POST['unit'] ?>
                                         </h3>
                                     </div>
-                                    <form action="<?= $_SERVER['REQUEST_URI']; ?>" method="POST">
+                                    <form action="/procesar-pago.php" method="POST">
                                         <script
                                             src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js"
                                             data-preference-id="<?php echo $preference->id; ?>"
