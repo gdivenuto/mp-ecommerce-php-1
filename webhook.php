@@ -1,7 +1,6 @@
 <?php
 // Se obtiene el JSON
 $json = file_get_contents('php://input');
-
 // Se guarda en un archivo para leerlo
 $filepost = "notificacion_webhook.json";
 file_put_contents($filepost, $json, FILE_APPEND);
