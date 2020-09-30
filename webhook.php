@@ -1,4 +1,11 @@
 <?php
+// Se obtiene el JSON
+$json = file_get_contents('php://input');
+
+// Se guarda en un archivo para leerlo
+$filepost = "notificacion_webhook.json";
+file_put_contents($filepost, $json, FILE_APPEND);
+
 MercadoPago\SDK::setAccessToken("APP_USR-6317427424180639-042414-47e969706991d3a442922b0702a0da44-469485398");
 
 switch($_POST["type"]) {
