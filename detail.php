@@ -132,7 +132,7 @@ $preference = new MercadoPago\Preference();
 $payer = new MercadoPago\Payer();
 $payer->name = "Lalo";
 $payer->surname = "Landa";
-$payer->email = "test_user_63274575@testuser.com";
+$payer->email = "test_user_32125002@testuser.com";// éste caducó: "test_user_63274575@testuser.com";
 $payer->phone = array(
     "area_code" => "11",
     "number" => "22223333"
@@ -170,7 +170,7 @@ $preference->back_urls = array(
     "pending" => "https://gdivenuto-mp-commerce-php.herokuapp.com/pending.php"
 );
 
-// Redirige automáticamente a la Tienda, según el resultado de la opercación se muestra la página definida arriba
+// Redirige automáticamente a la Tienda, según el resultado de la operación se muestra la página definida arriba
 $preference->auto_return = "approved";
                        
 // Métodos de Pago
